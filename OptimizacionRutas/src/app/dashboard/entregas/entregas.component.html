@@ -1,0 +1,73 @@
+<h1>Lista de entregas</h1>
+
+<div style="display: flex; justify-content: space-around;">
+  <mat-form-field style="width: 50%;">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" #input>
+  </mat-form-field>
+
+  <button mat-fab color="primary" matTooltip="Agregar entrega"
+    aria-label="Button that displays a tooltip when focused or hovered over" (click)="addEntrega()">
+    <mat-icon>add </mat-icon>
+  </button>
+</div>
+
+<div>
+  <table mat-table [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id_entrega}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ruta">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ruta </th>
+      <td mat-cell *matCellDef="let row"> {{row.ruta.id_ruta}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="conductor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> conductor </th>
+      <td mat-cell *matCellDef="let row">{{row.conductor.apellidos}} {{row.conductor.nombre}} -
+        {{row.conductor.licencia}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="vehiculo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> vehiculo </th>
+      <td mat-cell *matCellDef="let row"> {{row.vehiculo.marca}} - {{row.vehiculo.modelo}} - {{row.vehiculo.placa}}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="mostrarRuta(row.id_ruta)">
+            <mat-icon aria-hidden="false" fontIcon="map"></mat-icon>
+            Ver Ruta
+          </button>
+          <button mat-menu-item (click)="editEntrega(row)">
+            <mat-icon aria-hidden="false" fontIcon="edit"></mat-icon>
+            Editar
+          </button>
+
+          <button mat-menu-item (click)="deleteEntrega(row.id_entrega)">
+            <mat-icon aria-hidden="false" fontIcon="delete"></mat-icon>
+            Eliminar
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No hay datos como los que busca "{{input.value}}"</td>
+    </tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+</div>

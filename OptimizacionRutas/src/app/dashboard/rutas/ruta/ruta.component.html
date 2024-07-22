@@ -1,0 +1,75 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <div style="display: flex; justify-content: space-around;">
+    <mat-form-field style="width: 50%;">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" #input>
+    </mat-form-field>
+
+    <button mat-fab color="primary" matTooltip="Enviar pedidos" (click)="addRuta()">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? toggleAllRows() : null" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id_pedido}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="latitud">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> latitud </th>
+        <td mat-cell *matCellDef="let row"> {{row.latitud}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="longitud">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> longitud </th>
+        <td mat-cell *matCellDef="let row"> {{row.longitud}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> cliente </th>
+        <td mat-cell *matCellDef="let row"> {{row.cliente.nombre}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let row">
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openGoogleMaps(row.latitud, row.longitud)">
+              <mat-icon aria-hidden="false" aria-label="Icono Mapa" fontIcon="map"></mat-icon>
+              Ver en Google Maps
+            </button>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay datos que coincidan "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+  </div>
+</div>

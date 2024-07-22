@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <button mat-icon-button aria-label="Menu icon" (click)="toggleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <h1>Optimizacion de Rutas</h1>
+</mat-toolbar>
+<mat-sidenav-container autosize="true">
+  <mat-sidenav [ngClass]="!isCollapsed ? 'expanded' : ''" [mode]="isMobile ? 'over' : 'side'"
+    [opened]="isMobile ? 'false' : 'true'">
+    <mat-nav-list>
+      <div *ngFor="let item of menu">
+        <a mat-list-item [routerLink]="item.link">
+          <span class="entry">
+            <mat-icon>{{item.icon}}</mat-icon>
+            <span *ngIf="!isCollapsed">{{item.title}}</span>
+          </span>
+        </a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

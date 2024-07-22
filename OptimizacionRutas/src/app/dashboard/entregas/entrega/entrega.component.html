@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="entregaForm" (ngSubmit)="onSubmit()">
+    <mat-form-field style="width: 100%;">
+      <mat-label>Ruta</mat-label>
+      <input type="text" matInput formControlName="ruta" name="ruta" [matAutocomplete]="autoRuta"
+        (focus)="entregaForm.controls['ruta'].updateValueAndValidity()">
+      <mat-autocomplete autoActiveFirstOption #autoRuta="matAutocomplete" [displayWith]="displayRuta">
+        <mat-option *ngFor="let option of filteredRutaOptions | async" [value]="option">
+          Ruta N° {{ option.id_ruta }} -
+          <span *ngFor="let item of option.pedidos">
+            Pedido N° {{ item.id_pedido }}
+          </span>
+        </mat-option>
+      </mat-autocomplete>
+
+      <mat-error *ngIf="entregaForm.get('ruta')?.hasError('required')">El cliente es obligatorio</mat-error>
+      <mat-error *ngIf="entregaForm.get('ruta')?.hasError('pattern')">El cliente debe contener solo
+        números</mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Conductor</mat-label>
+      <input type="text" matInput formControlName="conductor" name="conductor" [matAutocomplete]="autoConductor"
+        (focus)="entregaForm.controls['conductor'].updateValueAndValidity()">
+      <mat-autocomplete autoActiveFirstOption #autoConductor="matAutocomplete" [displayWith]="displayConductor">
+        <mat-option *ngFor="let option of filteredConductorOptions | async" [value]="option">
+          {{ option.apellido }} {{ option.nombre }} - {{ option.ci }}
+        </mat-option>
+      </mat-autocomplete>
+
+      <mat-error *ngIf="entregaForm.get('conductor')?.hasError('required')">El cliente es obligatorio</mat-error>
+      <mat-error *ngIf="entregaForm.get('conductor')?.hasError('pattern')">El cliente debe contener solo
+        números</mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Vehiculo</mat-label>
+      <input type="text" matInput formControlName="vehiculo" name="vehiculo" [matAutocomplete]="autoVehiculo"
+        (focus)="entregaForm.controls['vehiculo'].updateValueAndValidity()">
+      <mat-autocomplete autoActiveFirstOption #autoVehiculo="matAutocomplete" [displayWith]="displayVehiculo">
+        <mat-option *ngFor="let option of filteredVehiculoOptions | async" [value]="option">
+          {{ option.marca }} {{ option.modelo }} - {{ option.placa }}
+        </mat-option>
+      </mat-autocomplete>
+
+      <mat-error *ngIf="entregaForm.get('vehiculo')?.hasError('required')">El cliente es obligatorio</mat-error>
+      <mat-error *ngIf="entregaForm.get('vehiculo')?.hasError('pattern')">El cliente debe contener solo
+        números</mat-error>
+    </mat-form-field>
+
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="onNoClick()">Cancelar</button>
+      <button mat-button type="submit" [disabled]="!entregaForm.valid">Guardar</button>
+    </div>
+  </form>
+</div>

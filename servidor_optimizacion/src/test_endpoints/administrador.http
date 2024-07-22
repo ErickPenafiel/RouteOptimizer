@@ -1,0 +1,49 @@
+### Obtener todos los conductores
+GET http://localhost:3000/administrador
+
+### Obtener un conductor
+GET http://localhost:3000/administrador/1
+
+### Crear un conductor
+POST http://localhost:3000/administrador
+Content-Type: application/json
+
+{
+  "nombre": "Jhonatan",
+  "apellido": "Barrios",
+  "email": "jhonatan@example.com",
+  "password": "password"
+}
+
+# {
+#   "nombre": "Juan",
+#   "apellidos": "Perez",
+#   "telefono": "1234567",
+#   "email": "prueba@example.com",
+#   "direccion": "Calle 123"
+# }
+
+
+
+### Actualizar un conductor
+PATCH  http://localhost:3000/administrador/1
+Content-Type: application/json
+
+{
+  "nombre": "Juan Carlos",
+  "apellido": "Perez Garcia",
+  "email": "prueba@example.com",
+  "password": "password"
+}
+
+### Eliminar un conductor
+DELETE http://localhost:3000/administrador/1
+
+### Login
+POST http://localhost:3000/administrador/login
+Content-Type: application/json
+
+{
+  "email": "alexa@example.com",
+  "password": "passwors"
+}

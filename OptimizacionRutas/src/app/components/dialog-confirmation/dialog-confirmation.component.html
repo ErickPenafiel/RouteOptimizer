@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>{{ dialogData.title }}</h2>
+<mat-dialog-content>
+  <p>{{ dialogData.mensaje }}</p>
+  <mat-checkbox *ngIf="dialogData.confirmCheckbox" [checked]="dialogData.confirm"
+    (change)="dialogData.confirm = !dialogData.confirm">
+    {{ dialogData.confirmText }}
+  </mat-checkbox>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button *ngIf="dialogData.confirmCheckbox" [color]="dialogData.color" (click)="onConfirm()"
+    [disabled]="!dialogData.confirm">
+    {{ dialogData.nameButton }}
+  </button>
+  <button mat-button *ngIf="!dialogData.confirmCheckbox" [color]="dialogData.color" (click)="onConfirm()">
+    {{ dialogData.nameButton }}
+  </button>
+  <button mat-button (click)="onCancel()">Cancelar</button>
+</mat-dialog-actions>

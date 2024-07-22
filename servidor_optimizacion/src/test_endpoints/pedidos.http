@@ -1,0 +1,31 @@
+### Obtener todos los conductores
+GET http://localhost:3000/pedidos
+
+### Obtener todos los pedidos sin asignar
+GET http://localhost:3000/pedidos/all
+
+### Obtener un conductor
+GET http://localhost:3000/pedidos/3
+
+### Crear un conductor
+POST http://localhost:3000/pedidos
+Content-Type: application/json
+
+{
+  "latitud": -19.049873038686503, 
+  "longitud": -65.2608044657072,
+  "clienteIdCliente": 2
+}
+
+### Actualizar un conductor
+PATCH  http://localhost:3000/pedidos/2
+Content-Type: application/json
+
+{
+  "latitud": 7987987,
+  "longitud": 7987987,
+  "clienteIdCliente": 2
+}
+
+### Eliminar un conductor
+DELETE http://localhost:3000/pedidos/2

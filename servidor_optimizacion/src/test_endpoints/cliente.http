@@ -1,0 +1,40 @@
+### Obtener todos los conductores
+GET http://localhost:3000/clientes
+
+### Obtener un conductor
+GET http://localhost:3000/clientes/1
+
+### Crear un conductor
+POST http://localhost:3000/clientes
+Content-Type: application/json
+
+# {
+#   "nombre": "Juan",
+#   "apellidos": "Perez",
+#   "telefono": "1234567",
+#   "email": "prueba@example.com",
+#   "direccion": "Calle 123"
+# }
+
+{
+  "nombre": "Alexa",
+  "apellidos": "Dominique",
+  "telefono": "789456321",
+  "email": "alexa@example.com",
+  "direccion": "Calle 123"
+}
+
+### Actualizar un conductor
+PATCH  http://localhost:3000/clientes/1
+Content-Type: application/json
+
+{
+  "nombre": "Juan Carlos",
+  "apellidos": "Perez Garcia",
+  "telefono": "789456132",
+  "email": "prueba@example.com",
+  "direccion": "Calle 123"
+}
+
+### Eliminar un conductor
+DELETE http://localhost:3000/clientes/1

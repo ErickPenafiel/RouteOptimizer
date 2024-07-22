@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="conductorForm" (ngSubmit)="onSubmit()">
+    <div style="display: flex; gap: 1rem;">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required>
+        <mat-error *ngIf="conductorForm.get('nombre')?.hasError('required')">El nombre es obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Apellido</mat-label>
+        <input matInput formControlName="apellido" required>
+        <mat-error *ngIf="conductorForm.get('apellido')?.hasError('required')">El apellido es obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>CI</mat-label>
+        <input matInput formControlName="ci" required>
+        <mat-error *ngIf="conductorForm.get('ci')?.hasError('required')">El CI es obligatorio</mat-error>
+        <mat-error *ngIf="conductorForm.get('ci')?.hasError('pattern')">El CI debe contener solo números</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div style="display: flex; gap: 1rem;">
+      <mat-form-field>
+        <mat-label>Licencia</mat-label>
+        <input matInput formControlName="licencia" required>
+        <mat-error *ngIf="conductorForm.get('licencia')?.hasError('required')">La licencia es obligatoria</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion" required>
+        <mat-error *ngIf="conductorForm.get('direccion')?.hasError('required')">La dirección es obligatoria</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Teléfono</mat-label>
+        <input matInput formControlName="telefono" type="number" required>
+        <mat-error *ngIf="conductorForm.get('telefono')?.hasError('required')">El teléfono es obligatorio</mat-error>
+        <mat-error *ngIf="conductorForm.get('telefono')?.hasError('pattern')">El teléfono debe contener solo
+          números</mat-error>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="onNoClick()">Cancelar</button>
+      <button mat-button type="submit" [disabled]="!conductorForm.valid">Guardar</button>
+    </div>
+  </form>
+</div>

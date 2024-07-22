@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="clienteForm" (ngSubmit)="onSubmit()">
+    <div style="display: flex; gap: 1rem;">
+      <mat-form-field>
+        <mat-label>Nombre</mat-label>
+        <input matInput formControlName="nombre" required>
+        <mat-error *ngIf="clienteForm.get('nombre')?.hasError('required')">El nombre es obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Apellidos</mat-label>
+        <input matInput formControlName="apellidos" required>
+        <mat-error *ngIf="clienteForm.get('apellidos')?.hasError('required')">Los apellidos son obligatorios</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Telefono</mat-label>
+        <input matInput formControlName="telefono" required>
+        <mat-error *ngIf="clienteForm.get('telefono')?.hasError('required')">El telefono es obligatorio</mat-error>
+        <mat-error *ngIf="clienteForm.get('telefono')?.hasError('pattern')">El telefono debe contener solo
+          números</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" required>
+        <mat-error *ngIf="clienteForm.get('email')?.hasError('required')">El email es obligatorio</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Dirección</mat-label>
+        <input matInput formControlName="direccion" required>
+        <mat-error *ngIf="clienteForm.get('direccion')?.hasError('required')">La dirección es obligatoria</mat-error>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="onNoClick()">Cancelar</button>
+      <button mat-button type="submit" [disabled]="!clienteForm.valid">Guardar</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,39 @@
+<div class="login">
+  <div class="login-card">
+    <div class="login-header">
+      <img src="../../../assets/images.jpg" alt="logo-salvietti">
+      <h1 class="login-card-title">Login Salvietti</h1>
+    </div>
+    <div class="login-body">
+      <form [formGroup]="loginForm" class="login-content" (ngSubmit)="login()">
+
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="pat@example.com" type="email" formControlName="email" required>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+            Email <strong>obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+            Email <strong>invalido</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field style="margin-top: 1rem;">
+          <mat-label>Contraseña</mat-label>
+          <input matInput formControlName="password" type="password" required>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Contraseña <strong>obligatorio</strong>
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">
+            Contraseña <strong>debe tener al menos 6 caracteres</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <button [disabled]="loginForm.invalid" mat-raised-button style="margin-top: 1rem;" color="primary"
+          type="submit">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

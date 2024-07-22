@@ -1,0 +1,28 @@
+<div class="wrapper">
+  <button (click)="drawRoute()" class="btn-route">Dibujar Ruta</button>
+  <button (click)="testMarker()" class="btn-route">Mostrar marcador</button>
+</div>
+
+<div class="wrapper">
+  <div class="box-inputs">
+    <div id="geocoder" #asGeocoder class="geocoder">
+
+    </div>
+
+    <div (click)="changeMode('start')" [ngClass]="{'active-way': modeInput === 'start'}">
+      <div class="mock-label">Inicio</div>
+      <div class="mock-label">{{this.wayPoints.start?.place_name}}</div>
+    </div>
+
+    <div (click)="changeMode('end')" [ngClass]="{'active-way': modeInput === 'end'}">
+      <div class="mock-label">Destino</div>
+      <div class="mock-label">{{this.wayPoints.end?.place_name}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="wrapper">
+  <div class="map-container" #asMap id="map">
+
+  </div>
+</div>

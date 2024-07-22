@@ -1,0 +1,32 @@
+### Obtener todos los entregas
+GET http://localhost:3000/entregas
+
+### Obtener una entrega
+GET http://localhost:3000/entregas/3
+
+### Agregar entregas
+POST http://localhost:3000/entregas
+Content-Type: application/json
+
+{
+    "id_ruta": 4,
+    "id_conductor": 5,
+    "id_vehiculo": 4
+}
+
+### Actualizar entregas
+PATCH http://localhost:3000/entregas/2
+Content-Type: application/json
+
+{
+    "id_ruta": 4,
+    "id_conductor": 10,
+    "id_vehiculo": 4
+}
+
+### Eliminar entregas
+DELETE http://localhost:3000/entregas/2
+
+
+### Obtener Entrega por Conductor
+GET http://localhost:3000/entregas/conductor/3

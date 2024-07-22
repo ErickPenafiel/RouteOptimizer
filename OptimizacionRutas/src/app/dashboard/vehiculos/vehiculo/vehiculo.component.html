@@ -1,0 +1,39 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="vehiculoForm" (ngSubmit)="onSubmit()">
+    <div style="display: flex; gap: 1rem;">
+      <mat-form-field>
+        <mat-label>Placa</mat-label>
+        <input matInput formControlName="placa" required>
+        <mat-error *ngIf="vehiculoForm.get('placa')?.hasError('required')">La placa es obligatoria</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Marca</mat-label>
+        <input matInput formControlName="marca" required>
+        <mat-error *ngIf="vehiculoForm.get('marca')?.hasError('required')">La marca es obligatoria</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Modelo</mat-label>
+        <input matInput formControlName="modelo" required>
+        <mat-error *ngIf="vehiculoForm.get('modelo')?.hasError('required')">El modelo es obligatorio</mat-error>
+      </mat-form-field>
+    </div>
+    <div style="display: flex; gap: 1rem;">
+      <mat-form-field>
+        <mat-label>Año</mat-label>
+        <input matInput formControlName="anio" type="number" required>
+        <mat-error *ngIf="vehiculoForm.get('anio')?.hasError('required')">El año es obligatoria</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Capacidad de carga</mat-label>
+        <input matInput formControlName="capacidad_carga" type="number" required>
+        <mat-error *ngIf="vehiculoForm.get('capacidad_carga')?.hasError('required')">La capacidad de carga es
+          obligatoria</mat-error>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="onNoClick()">Cancelar</button>
+      <button mat-button type="submit" [disabled]="!vehiculoForm.valid">Guardar</button>
+    </div>
+  </form>
+</div>

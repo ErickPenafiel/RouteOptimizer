@@ -1,0 +1,32 @@
+### Obtener todos los vehiculos
+GET http://localhost:3000/vehiculo
+
+### Obtener un vehiculo
+GET http://localhost:3000/vehiculo/3
+
+### Agregar vehiculo
+POST http://localhost:3000/vehiculo
+Content-Type: application/json
+
+{
+    "placa": "ABC123",
+    "marca": "Toyotaaaa",
+    "modelo": "Corolla",
+    "anio": 2019,
+    "capacidad_carga": 1000
+}
+
+### Actualizar vehiculo
+PATCH http://localhost:3000/vehiculo/2
+Content-Type: application/json
+
+{
+    "placa": "ABC123",
+    "marca": "Toyotaasa",
+    "modelo": "Corolla",
+    "anio": 2019,
+    "capacidad_carga": 1000
+}
+
+### Eliminar vehiculo
+DELETE http://localhost:3000/vehiculo/1

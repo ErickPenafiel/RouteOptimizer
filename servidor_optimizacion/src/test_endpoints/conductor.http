@@ -1,0 +1,34 @@
+### Obtener todos los conductores
+GET http://localhost:3000/conductores
+
+### Obtener un conductor
+GET http://localhost:3000/conductores/1
+
+### Crear un conductor
+POST http://localhost:3000/conductores
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "apellido": "Perez",
+  "ci": "1234567",
+  "licencia": "1234567",
+  "telefono": 1234567890,
+  "direccion": "Calle 123"
+}
+
+### Actualizar un conductor
+PATCH  http://localhost:3000/conductores/1
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "apellido": "Perez Alvarez",
+  "ci": "1234567",
+  "licencia": "1234567",
+  "telefono": 1234567890,
+  "direccion": "Calle 123"
+}
+
+### Eliminar un conductor
+DELETE http://localhost:3000/conductores/1

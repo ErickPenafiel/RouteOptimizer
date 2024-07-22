@@ -1,0 +1,35 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="pedidoForm" (ngSubmit)="onSubmit()">
+    <div style="display: flex; flex-direction: column; width: 500px;">
+      <mat-form-field>
+        <mat-label>Latitud</mat-label>
+        <input matInput formControlName="latitud" type="number" required>
+        <mat-error *ngIf="pedidoForm.get('latitud')?.hasError('required')">La latitud es obligatoria</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Longitud</mat-label>
+        <input matInput formControlName="longitud" type="number" required>
+        <mat-error *ngIf="pedidoForm.get('longitud')?.hasError('required')">La longitud es obligatoria</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Cliente</mat-label>
+        <input type="text" matInput formControlName="cliente" name=" cliente" [matAutocomplete]="autoCliente"
+          (focus)="pedidoForm.controls['cliente'].updateValueAndValidity()">
+        <mat-autocomplete autoActiveFirstOption #autoCliente="matAutocomplete" [displayWith]="displayCliente">
+          <mat-option *ngFor="let option of filteredClientOptions | async" [value]="option">
+            {{ option.apellidos }} {{ option.nombre }}
+          </mat-option>
+        </mat-autocomplete>
+
+        <mat-error *ngIf="pedidoForm.get('cliente')?.hasError('required')">El cliente es obligatorio</mat-error>
+        <mat-error *ngIf="pedidoForm.get('cliente')?.hasError('pattern')">El cliente debe contener solo
+          números</mat-error>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button type="button" (click)="onNoClick()">Cancelar</button>
+      <button mat-button type="submit" [disabled]="!pedidoForm.valid">Guardar</button>
+    </div>
+  </form>
+</div>

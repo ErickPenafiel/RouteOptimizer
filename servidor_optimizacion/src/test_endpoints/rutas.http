@@ -1,0 +1,79 @@
+### Obtener todas las rutas
+GET http://localhost:3000/rutas
+
+### Obtener todas las rutas sin asignar
+GET http://localhost:3000/rutas/asignar
+
+### Obtener todas las rutas
+GET http://localhost:3000/rutas/8
+
+### OPTIMIZAR RUTAS
+POST http://localhost:3000/rutas/optimizar
+Content-Type: application/json
+
+# {
+#   "ubicaciones": [
+#     {
+#       "latitud": -19.04744143451281,
+#       "longitud": -65.25973113969711
+#     },
+#     {
+#       "latitud": -19.054512073639817, 
+#       "longitud": -65.25340655705574
+#     },
+#     {
+#       "latitud": -19.049873038686503, 
+#       "longitud": -65.2608044657072
+#     }
+#   ]
+# }
+
+{
+  "ubicaciones": [
+    {
+      "id_pedido": 15,
+      "latitud": -19.04744143451281,
+      "longitud": -65.25973113969711,
+      "cliente": {
+        "id_cliente": 2,
+        "nombre": "Alexa",
+        "apellidos": "Dominique",
+        "telefono": "789456321321321",
+        "email": "alexa@example.com",
+        "direccion": "Calle 123"
+      },
+      "ruta": null
+    },
+    {
+      "id_pedido": 16,
+      "latitud": -19.054512073639817,
+      "longitud": -65.25340655705574,
+      "cliente": {
+        "id_cliente": 2,
+        "nombre": "Alexa",
+        "apellidos": "Dominique",
+        "telefono": "789456321321321",
+        "email": "alexa@example.com",
+        "direccion": "Calle 123"
+      },
+      "ruta": null
+    },
+    {
+      "id_pedido": 17,
+      "latitud": -19.049873038686503,
+      "longitud": -65.2608044657072,
+      "cliente": {
+        "id_cliente": 2,
+        "nombre": "Alexa",
+        "apellidos": "Dominique",
+        "telefono": "789456321321321",
+        "email": "alexa@example.com",
+        "direccion": "Calle 123"
+      },
+      "ruta": null
+    }
+  ]
+}
+
+### Eliminar una ruta
+DELETE http://localhost:3000/rutas/2
