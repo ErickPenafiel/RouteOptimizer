@@ -23,7 +23,7 @@
 ## Requisitos
 
 - Node.js 14.x o superior
-- MongoDB 4.x o superior
+- MySQL
 - Angular CLI 12.x o superior
 - Flutter 2.x o superior
 - NestJS 7.x o superior
